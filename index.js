@@ -67,7 +67,7 @@ async function startxavior() {
     const xavior = xaviorConnect({
         logger: pino({ level: 'silent' }),
         printQRInTerminal: true,
-        browser: ['AzzBot Device','Safari','1.0.0'],
+        browser: ['Maabotz Device','Safari','1.0.0'],
         auth: state
     })
 
