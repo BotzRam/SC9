@@ -1,4 +1,9 @@
-//Jangan Direcode Ntar Di Enc Nanges...
+/**
+   * Recode By XaviorOfc
+   * Contact Me on wa.me/6281908052908
+   * Instagram : XaviorOfc
+*/
+
 require('./config')
 const { default: xaviorConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
 const { state, saveState } = useSingleFileAuthState(`./${sessionName}.json`)
@@ -51,7 +56,6 @@ global.loadDatabase = async function loadDatabase() {
     settings: {},
     others: {},
     sticker: {},
-    anonymous: {},
     ...(global.db.data || {})
   }
   global.db.chain = _.chain(global.db.data)
@@ -67,27 +71,20 @@ async function startxavior() {
     const xavior = xaviorConnect({
         logger: pino({ level: 'silent' }),
         printQRInTerminal: true,
-        browser: ['Maabotz Device','Safari','1.0.0'],
+        browser: ['Xavior-BOT','Safari','1.0.0'],
         auth: state
     })
 
     store.bind(xavior.ev)
     
-    // Anti Call
-    xavior.ev.on('call', async (fatihh) => {
-    let botNumber = await xavior.decodeJid(xavior.user.id)
-    let ciko = db.data.settings[botNumber].anticall
-    if (!ciko) return
-    console.log(fatihh)
-    for (let tihh of fatihh) {
-    if (tihh.isGroup == false) {
-    if (tihh.status == "offer") {
-    let pa7rick = await xavior.sendTextWithMentions(tihh.from, `*${xavior.user.name}* tidak bisa menerima panggilan ${tihh.isVideo ? `video` : `suara`}. Maaf @${tihh.from.split('@')[0]} kamu akan diblockir. Jika tidak sengaja silahkan hubungi Owner untuk dibuka !`)
-    xavior.sendContact(tihh.from, global.owner, pa7rick)
+    // anticall auto block
+    xavior.ws.on('CB:call', async (json) => {
+    const callerId = json.content[0].attrs['call-creator']
+    if (json.content[0].tag == 'offer') {
+    let pa7rick = await xavior.sendContact(callerId, global.owner)
+    xavior.sendMessage(callerId, { text: `Sistem otomatis block!\nJangan menelpon bot!\nSilahkan Hubungi Owner Untuk Dibuka !`}, { quoted : pa7rick })
     await sleep(8000)
-    await xavior.updateBlockStatus(tihh.from, "block")
-    }
-    }
+    await xavior.updateBlockStatus(callerId, "block")
     }
     })
 
@@ -157,9 +154,9 @@ async function startxavior() {
                 }
 
                 if (anu.action == 'add') {
-                    xavior.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `Welcome To ${metadata.subject} @${num.split("@")[0]}` })
+                    xavior.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `Hai Beban` })
                 } else if (anu.action == 'remove') {
-                    xavior.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `@${num.split("@")[0]} Leaving To ${metadata.subject}` })
+                    xavior.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `@${num.split("@")[0]} Telah Kena Mental Di Grup ${metadata.subject}` })
                 } else if (anu.action == 'promote') {
                     xavior.sendMessage(anu.id, { image: { url: ppuser }, mentions: [num], caption: `@${num.split('@')[0]} Promote From ${metadata.subject}` })
                 } else if (anu.action == 'demote') {
@@ -210,7 +207,7 @@ async function startxavior() {
 	for (let i of kon) {
 	    list.push({
 	    	displayName: await xavior.getName(i + '@s.whatsapp.net'),
-	    	vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${await xavior.getName(i + '@s.whatsapp.net')}\nFN:${await xavior.getName(i + '@s.whatsapp.net')}\nitem1.TEL;waid=${i}:${i}\nitem1.X-ABLabel:Ponsel\nitem2.EMAIL;type=INTERNET:okeae2410@gmail.com\nitem2.X-ABLabel:Email\nitem3.URL:https://instagram.com/cak_haho\nitem3.X-ABLabel:Instagram\nitem4.ADR:;;Indonesia;;;;\nitem4.X-ABLabel:Region\nEND:VCARD`
+	    	vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${await xavior.getName(i + '@s.whatsapp.net')}\nFN:${await xavior.getName(i + '@s.whatsapp.net')}\nitem1.TEL;waid=${i}:${i}\nitem1.X-ABLabel:Ponsel\nitem4.ADR:;;Indonesia;;;;\nitem4.X-ABLabel:Region\nEND:VCARD`
 	    })
 	}
 	xavior.sendMessage(jid, { contacts: { displayName: `${list.length} Kontak`, contacts: list }, ...opts }, { quoted })
@@ -241,13 +238,13 @@ async function startxavior() {
         const { connection, lastDisconnect } = update	    
         if (connection === 'close') {
         let reason = new Boom(lastDisconnect?.error)?.output.statusCode
-            if (reason === DisconnectReason.badSession) { console.log(`Session Eror Ganti session Lu/ Scan Ulang`); xavior.logout(); }
-            else if (reason === DisconnectReason.connectionClosed) { console.log("Koneksi Terputus...."); startxavior(); }
-            else if (reason === DisconnectReason.connectionLost) { console.log("Koneksi terputus Dari Server..."); startxavior(); }
+            if (reason === DisconnectReason.badSession) { console.log(`Session Lu Mesti Ganti Bro.., Hapus Session Dan Scan ulang`); xavior.logout(); }
+            else if (reason === DisconnectReason.connectionClosed) { console.log("Connection closed, reconnecting...."); startxavior(); }
+            else if (reason === DisconnectReason.connectionLost) { console.log("Connection Lost from Server, reconnecting..."); startxavior(); }
             else if (reason === DisconnectReason.connectionReplaced) { console.log("Connection Replaced, Another New Session Opened, Please Close Current Session First"); xavior.logout(); }
-            else if (reason === DisconnectReason.loggedOut) { console.log(`Scan Mu Tadi Telah Terlogot Dari Wa Web Coy....`); xavior.logout(); }
-            else if (reason === DisconnectReason.restartRequired) { console.log("Merestart Cuy..."); startxavior(); }
-            else if (reason === DisconnectReason.timedOut) { console.log("Koneksi Timeout..."); startxavior(); }
+            else if (reason === DisconnectReason.loggedOut) { console.log(`WA WEB Terlogout Bre.., Please Scan Again And Run.`); xavior.logout(); }
+            else if (reason === DisconnectReason.restartRequired) { console.log("Restart Required, Restarting..."); startxavior(); }
+            else if (reason === DisconnectReason.timedOut) { console.log("Koneksi Internet Buruk, Reconnecting..."); startxavior(); }
             else xavior.end(`Unknown DisconnectReason: ${reason}|${connection}`)
         }
         console.log('Connected...', update)
@@ -477,7 +474,7 @@ async function startxavior() {
      * @param {*} options 
      * @returns 
      */
-    xavior.sendText = (jid, text, quoted = '', options) => xavior.sendMessage(jid, { text: text, ...options }, { quoted, ...options })
+    xavior.sendText = (jid, text, quoted = '', options) => xavior.sendMessage(jid, { text: text, ...options }, { quoted })
 
     /**
      * 
