@@ -12,6 +12,8 @@ global.APIKeys = {
 }
 
 // NAMBAH BOLEH HAPUS JANGAN -_-
+global.namabot = ['Ara']
+global.namaowner = ['XaviorOfc']
 global.owner = ['6285791220179']
 global.premium = ['6285791220179']
 global.packname = 'Maabotz'
