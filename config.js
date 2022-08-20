@@ -1,61 +1,49 @@
+//Bang Subscribe YT XaviorOfc Lh..
+
 const fs = require('fs')
 const chalk = require('chalk')
 
-// MAKASIHLAH KE BANG ZENZ :)
+// Web APIs Nya, Klo Mau Ubah Silahkan
 global.APIs = {
-	zenz: 'https://zenzapis.xyz',
+	xaviorapikey: 'https://xaviorapikey/herokuapp.com',
+	zenz: 'https:zenzapis.xyz'
 }
 
-// HMM UDAH FREE DECK
+// Udah Free Apikey Jadi Klo Mau Ubah Silahkan
 global.APIKeys = {
-	'https://zenzapis.xyz': 'sonelstore',
+	'https://xaviorapikey.herokuapp.com': 'APIKEY',
+	'https://zenzapis.xyz': 'sonelstore'
 }
 
-// NAMBAH BOLEH HAPUS JANGAN -_-
+// Yang Bisa Kelen Editzy 
 global.namabot = ['Maabotz']
-global.namaowner = ['Ramaa ganzz']
+global.namaowner = ['Ramaa Gnzz']
 global.owner = ['6285791220179']
 global.premium = ['6285791220179']
-global.packname = 'Maabotz'
-global.author = 'Maabotz-MD'
+global.packname = 'Ramaa'
+global.author = 'Maabotz | Ramaa'
 global.sessionName = 'Xavior'
 global.prefa = ['','!','.','🐦','🐤','🗿']
 global.sp = '⭔'
 global.mess = {
-    success: '✓ Success',
-    admin: 'Fitur Khusus Admin Group!',
-    botAdmin: 'Bot Harus Menjadi Admin Terlebih Dahulu!',
-    owner: 'Fitur Khusus Owner Bot',
-    group: 'Fitur Digunakan Hanya Untuk Group!',
-    private: 'Fitur Digunakan Hanya Untuk Private Chat!',
-    bot: 'Fitur Khusus Pengguna Nomor Bot',
-    wait: 'Loading...',
-    endLimit: 'Limit Harian Anda Telah Habis, Limit Akan Direset Setiap Jam 12',
+    success: 'Permintaan mu udah jadi...,Sekarang subrek channel *Rama BotZz*',
+    admin: '*Mau ngapain ngab?, lu bukan admin awokawok*',
+    botAdmin: 'Bot harus menjadi admin terlebih dahulu ',
+    owner: 'Awokaoek Lu Bukan Owner',
+    group: 'Mesti Ke Gc Kita Cuy...',
+    private: 'Chat Private Sini',
+    bot: 'Cuma Bisa Untuk Bot',
+    wait: 'Tunggu bentar,Subrek dulu Channel *Ramaa BotZz*',
+    endLimit: 'Limit Harian Sudah Habis, Limit Akan Direset Besok',
 }
+//Kalo Ngasih Limit Jangan Dikit Lah Bng
 global.limitawal = {
     premium: "Infinity",
-    free: 5
+    free: 10
 }
 global.thumb = fs.readFileSync('./lib/xavi.jpg')
-global.tutor = fs.readFileSync('./video/intro.mp4')
 global.visoka = { url: 'https://telegra.ph/file/15209657f9d4f59c7ca1e.mp4' }
-global.menu1 = fs.readFileSync('./foto/1.jpg')
-global.menu2 = fs.readFileSync('./foto/1.jpg')
-global.menu3 = fs.readFileSync('./foto/1.jpg')
-global.menu4 = fs.readFileSync('./foto/1.jpg')
-global.menu5 = fs.readFileSync('./foto/1.jpg')
-global.menu6 = fs.readFileSync('./foto/1.jpg')
-global.menu7 = fs.readFileSync('./foto/1.jpg')
-global.menu8 = fs.readFileSync('./foto/1.jpg')
-global.menu9 = fs.readFileSync('./foto/1.jpg')
-global.menu10 = fs.readFileSync('./foto/1.jpg')
-global.menu11 = fs.readFileSync('./foto/1.jpg')
-global.menu12 = fs.readFileSync('./foto/1.jpg')
-global.menu13 = fs.readFileSync('./foto/1.jpg')
-global.menu14 = fs.readFileSync('./foto/1.jpg')
-global.menu15 = fs.readFileSync('./foto/1.jpg')
-global.menu16 = fs.readFileSync('./foto/1.jpg')
-global.menu17 = fs.readFileSync('./foto/1.jpg')
+
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
 	fs.unwatchFile(file)
